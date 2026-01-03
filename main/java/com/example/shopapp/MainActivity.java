@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -24,28 +23,53 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // 1. 绑定控件
         layoutHome = findViewById(R.id.layout_home);
         layoutMine = findViewById(R.id.layout_mine);
         btnTabHome = findViewById(R.id.btn_tab_home);
         btnTabMine = findViewById(R.id.btn_tab_mine);
         tvUser = findViewById(R.id.tv_user_info);
 
-        // 设置用户名
+        // 2. 显示用户名
         tvUser.setText("当前用户：" + SPHelper.getString(this, "last_user"));
 
-        // 底部Tab点击事件
+        // 3. Tab切换
         btnTabHome.setOnClickListener(v -> switchTab(true));
         btnTabMine.setOnClickListener(v -> switchTab(false));
 
-        // 退出登录
+        // 4. 退出登录
         findViewById(R.id.btn_logout).setOnClickListener(v -> {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         });
 
-        // 动态生成UI (加分项)
+        // 5. 个人中心加分功能
+        findViewById(R.id.btn_call).setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(android.net.Uri.parse("tel:11111"));
+            startActivity(intent);
+        });
+
+        findViewById(R.id.btn_share).setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, "SHARE！");
+            startActivity(Intent.createChooser(intent, "分享到"));
+        });
+
+        findViewById(R.id.btn_about).setOnClickListener(v -> {
+            new androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle("关于我们")
+                    .setMessage("当前版本：v1.0.0\n开发者：陈文渊")
+                    .setPositiveButton("好的", null)
+                    .show();
+        });
+
+        // 6. 动态生成菜单 (保留！)
         initMenuGrid();
-        initProductGrid();
+
+        // 7. 给XML里写死的商品加点击事件 (可选，增加交互感)
+        bindStaticProductClicks();
     }
 
     private void switchTab(boolean isHome) {
@@ -62,11 +86,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // 辅助方法：给静态写死的商品绑定点击事件
+    private void bindStaticProductClicks() {
+        GridLayout grid = findViewById(R.id.grid_products);
+        // 遍历所有子 View (即那6个商品卡片)
+        for (int i = 0; i < grid.getChildCount(); i++) {
+            View child = grid.getChildAt(i);
+            child.setOnClickListener(v ->
+                    Toast.makeText(MainActivity.this, "正在打开商品详情...", Toast.LENGTH_SHORT).show()
+            );
+        }
+    }
+
+    // --- 动态菜单相关 ---
+    private android.graphics.drawable.GradientDrawable createCircleBg(String color) {
+        android.graphics.drawable.GradientDrawable drawable = new android.graphics.drawable.GradientDrawable();
+        drawable.setShape(android.graphics.drawable.GradientDrawable.OVAL);
+        drawable.setColor(Color.parseColor(color));
+        return drawable;
+    }
+
     private void initMenuGrid() {
         GridLayout grid = findViewById(R.id.grid_menu);
-        // 1. 定义两组数组：一个是名字，一个是对应的 Emoji
+        grid.removeAllViews(); // 防止重复
+
         String[] menus = {"新品", "聚划算", "国际", "外卖", "超市", "充值", "机票", "领金币", "拍卖", "分类"};
         String[] icons = {"🎁", "🔥", "🌏", "🍔", "🍎", "💰", "✈️", "🪙", "🔨", "📂"};
+
+        // ❌ 删掉了 bgColors 数组
 
         for (int i = 0; i < menus.length; i++) {
             LinearLayout item = new LinearLayout(this);
@@ -78,77 +125,27 @@ public class MainActivity extends AppCompatActivity {
             params.setMargins(0, 20, 0, 20);
             item.setLayoutParams(params);
 
-            // --- 修改开始：用 Emoji 代替 ImageView ---
             TextView icon = new TextView(this);
-            icon.setText(icons[i]);       // 设置 Emoji
-            icon.setTextSize(30);         // 字体设置大一点，看起来像图标
+            icon.setText(icons[i]);
+            icon.setTextSize(32); // 稍微放大一点，因为没有背景了
             icon.setGravity(Gravity.CENTER);
-            icon.setTextColor(Color.WHITE);
-            icon.setPadding(0,0,0,10);    //稍微把图标往上提一点
-            // --- 修改结束 ---
+            icon.setTextColor(Color.BLACK);
+
+            // 下面的布局参数保持简单
+            item.addView(icon);
 
             TextView text = new TextView(this);
             text.setText(menus[i]);
             text.setTextSize(12);
-            text.setTextColor(Color.BLACK);
+            text.setTextColor(Color.parseColor("#666666")); // 文字稍微深灰一点
             text.setGravity(Gravity.CENTER);
+            text.setPadding(0, 10, 0, 0); // 文字和图标拉开一点距离
 
-            item.addView(icon);
             item.addView(text);
 
             final String name = menus[i];
             item.setOnClickListener(v -> Toast.makeText(this, "点击: " + name, Toast.LENGTH_SHORT).show());
             grid.addView(item);
-        }
-    }
-
-    private void initProductGrid() {
-        GridLayout grid = findViewById(R.id.grid_products);
-        // 准备一堆商品 Emoji
-        String[] productEmojis = {"📱", "💻", "⌚", "📷", "🎧", "👟", "👜", "👓", "💄", "🚲"};
-
-        for (int i = 0; i < 20; i++) {
-            LinearLayout card = new LinearLayout(this);
-            card.setOrientation(LinearLayout.VERTICAL);
-            card.setBackgroundColor(Color.WHITE);
-            // 给卡片加一点圆角效果 (利用 View 的特性，API 21+ 支持)
-            card.setElevation(5f);
-            card.setPadding(20, 20, 20, 20);
-
-            GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-            params.width = getResources().getDisplayMetrics().widthPixels / 2 - 30; // 调整间距
-            params.setMargins(15, 15, 15, 15);
-            card.setLayoutParams(params);
-
-            // --- 修改开始：商品图变成超大 Emoji ---
-            TextView imgPlaceholder = new TextView(this);
-            imgPlaceholder.setText(productEmojis[i % productEmojis.length]); // 循环使用表情
-            imgPlaceholder.setTextSize(50); // 超大号
-            imgPlaceholder.setTextColor(Color.BLACK);
-            imgPlaceholder.setGravity(Gravity.CENTER);
-            imgPlaceholder.setBackgroundColor(Color.parseColor("#F5F5F5")); // 浅灰背景
-            imgPlaceholder.setHeight(300); // 固定高度
-            imgPlaceholder.setGravity(Gravity.CENTER); // 表情居中
-            // --- 修改结束 ---
-
-            TextView title = new TextView(this);
-            title.setText("【热销】好物推荐系列 " + (i + 1));
-            title.setTextSize(14);
-            title.setTextColor(Color.BLACK);
-            title.setPadding(0, 20, 0, 0);
-
-            TextView price = new TextView(this);
-            price.setText("￥ " + (99 + i * 10));
-            price.setTextColor(Color.parseColor("#FF5000")); // 淘宝橙
-            price.setTextSize(16);
-            price.setPadding(0, 10, 0, 0);
-
-            card.addView(imgPlaceholder);
-            card.addView(title);
-            card.addView(price);
-
-            card.setOnClickListener(v -> Toast.makeText(this, "打开商品详情...", Toast.LENGTH_SHORT).show());
-            grid.addView(card);
         }
     }
 }
