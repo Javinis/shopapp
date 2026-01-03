@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#EEEEEE">
+    android:background="#F5F5F5">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -19,53 +19,242 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView android:text="🔍 搜索海量商品" android:background="#FF8800" android:textColor="#fff" android:gravity="center" android:padding="15dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="🔍 搜索海量商品"
+                    android:background="#FF8800"
+                    android:textColor="#fff"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <ViewFlipper
                     android:autoStart="true"
                     android:flipInterval="3000"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:layout_margin="10dp"> <LinearLayout
-                    android:background="@drawable/banner_gradient_1"
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <TextView android:text="双11 大促" android:textColor="#fff" android:textSize="30sp" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                </LinearLayout>
-
+                    android:layout_margin="10dp">
+                    <LinearLayout
+                        android:background="@drawable/banner_gradient_1"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="双11 大促"
+                            android:textColor="#fff"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
                     <LinearLayout
                         android:background="@drawable/banner_gradient_2"
                         android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-                        <TextView android:text="新品 上市" android:textColor="#fff" android:textSize="30sp" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="新品 上市"
+                            android:textColor="#fff"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </ViewFlipper>
 
-                <GridLayout android:id="@+id/grid_menu" android:columnCount="5" android:padding="10dp" android:background="#fff" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                <GridLayout
+                    android:id="@+id/grid_menu"
+                    android:columnCount="5"
+                    android:padding="10dp"
+                    android:background="#fff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-                <TextView android:text="—— 猜你喜欢 ——" android:gravity="center" android:padding="15dp" android:textColor="#FF5000" android:textStyle="bold" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="—— 猜你喜欢 ——"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:textColor="#FF5000"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-                <GridLayout android:id="@+id/grid_products" android:columnCount="2" android:padding="5dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+                <GridLayout
+                    android:id="@+id/grid_products"
+                    android:columnCount="2"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1" android:layout_margin="5dp" android:orientation="vertical" android:background="#FFFFFF" android:elevation="3dp" android:padding="10dp">
+                        <TextView android:text="📱" android:textSize="50sp" android:textColor="#000000" android:gravity="center" android:background="#F5F5F5" android:layout_width="match_parent" android:layout_height="120dp"/>
+                        <TextView android:text="iPhone 15 Pro" android:paddingTop="10dp" android:textColor="#000" android:textSize="14sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                        <TextView android:text="￥7999" android:textColor="#FF5000" android:textStyle="bold" android:textSize="16sp" android:paddingTop="5dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1" android:layout_margin="5dp" android:orientation="vertical" android:background="#FFFFFF" android:elevation="3dp" android:padding="10dp">
+                        <TextView android:text="💻" android:textSize="50sp" android:textColor="#000000" android:gravity="center" android:background="#F5F5F5" android:layout_width="match_parent" android:layout_height="120dp"/>
+                        <TextView android:text="MacBook Air" android:paddingTop="10dp" android:textColor="#000" android:textSize="14sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                        <TextView android:text="￥8999" android:textColor="#FF5000" android:textStyle="bold" android:textSize="16sp" android:paddingTop="5dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1" android:layout_margin="5dp" android:orientation="vertical" android:background="#FFFFFF" android:elevation="3dp" android:padding="10dp">
+                        <TextView android:text="👟" android:textSize="50sp" android:textColor="#000000" android:gravity="center" android:background="#F5F5F5" android:layout_width="match_parent" android:layout_height="120dp"/>
+                        <TextView android:text="AJ 限量球鞋" android:paddingTop="10dp" android:textColor="#000" android:textSize="14sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                        <TextView android:text="￥1299" android:textColor="#FF5000" android:textStyle="bold" android:textSize="16sp" android:paddingTop="5dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1" android:layout_margin="5dp" android:orientation="vertical" android:background="#FFFFFF" android:elevation="3dp" android:padding="10dp">
+                        <TextView android:text="🎧" android:textSize="50sp" android:textColor="#000000" android:gravity="center" android:background="#F5F5F5" android:layout_width="match_parent" android:layout_height="120dp"/>
+                        <TextView android:text="索尼降噪耳机" android:paddingTop="10dp" android:textColor="#000" android:textSize="14sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                        <TextView android:text="￥1999" android:textColor="#FF5000" android:textStyle="bold" android:textSize="16sp" android:paddingTop="5dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1" android:layout_margin="5dp" android:orientation="vertical" android:background="#FFFFFF" android:elevation="3dp" android:padding="10dp">
+                        <TextView android:text="⌚" android:textSize="50sp" android:textColor="#000000" android:gravity="center" android:background="#F5F5F5" android:layout_width="match_parent" android:layout_height="120dp"/>
+                        <TextView android:text="华为 Watch GT" android:paddingTop="10dp" android:textColor="#000" android:textSize="14sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                        <TextView android:text="￥1488" android:textColor="#FF5000" android:textStyle="bold" android:textSize="16sp" android:paddingTop="5dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1" android:layout_margin="5dp" android:orientation="vertical" android:background="#FFFFFF" android:elevation="3dp" android:padding="10dp">
+                        <TextView android:text="👜" android:textSize="50sp" android:textColor="#000000" android:gravity="center" android:background="#F5F5F5" android:layout_width="match_parent" android:layout_height="120dp"/>
+                        <TextView android:text="轻奢单肩包" android:paddingTop="10dp" android:textColor="#000" android:textSize="14sp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                        <TextView android:text="￥599" android:textColor="#FF5000" android:textStyle="bold" android:textSize="16sp" android:paddingTop="5dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                </GridLayout>
             </LinearLayout>
         </ScrollView>
 
         <LinearLayout
             android:id="@+id/layout_mine"
             android:visibility="gone"
-            android:gravity="center"
             android:orientation="vertical"
+            android:background="#F5F5F5"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ImageView android:background="#999" android:layout_width="80dp" android:layout_height="80dp"/>
-            <TextView android:id="@+id/tv_user_info" android:text="User" android:textSize="20sp" android:layout_marginTop="20dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-            <Button android:id="@+id/btn_logout" android:text="退出登录" android:layout_marginTop="50dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:background="#FF8800"
+                android:gravity="center_vertical"
+                android:padding="30dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="180dp">
+
+                <TextView
+                    android:text="😎"
+                    android:textSize="60sp"
+                    android:background="#FFFFFF"
+                    android:textColor="#000000"
+                    android:gravity="center"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_user_info"
+                        android:text="用户名"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:textSize="22sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="普通会员"
+                        android:textColor="#EEE"
+                        android:layout_marginTop="5dp"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_margin="15dp"
+                android:background="#FFFFFF"
+                android:elevation="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/btn_call"
+                    android:text="📞  联系客服"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:padding="20dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:background="#EEE"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"/>
+
+                <TextView
+                    android:id="@+id/btn_share"
+                    android:text="📤  分享给好友"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:padding="20dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:background="#EEE"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"/>
+
+                <TextView
+                    android:id="@+id/btn_about"
+                    android:text="ℹ️  关于版本"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:padding="20dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_logout"
+                android:text="退出登录"
+                android:backgroundTint="#FF0000"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </FrameLayout>
 
-    <LinearLayout android:orientation="horizontal" android:background="#fff" android:layout_width="match_parent" android:layout_height="55dp">
-        <TextView android:id="@+id/btn_tab_home" android:text="首页" android:textColor="#f00" android:gravity="center" android:layout_weight="1" android:layout_width="0dp" android:layout_height="match_parent"/>
-        <TextView android:id="@+id/btn_tab_mine" android:text="我的" android:gravity="center" android:layout_weight="1" android:layout_width="0dp" android:layout_height="match_parent"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+        <TextView
+            android:id="@+id/btn_tab_home"
+            android:text="首页"
+            android:textColor="#f00"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/btn_tab_mine"
+            android:text="我的"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 </LinearLayout>
